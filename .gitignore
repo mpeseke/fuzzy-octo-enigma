@@ -2,6 +2,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/macos,vue,vuejs,jetbrains,webstorm
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,vue,vuejs,jetbrains,webstorm
 
+### VS Code ###
+.vscode
+
 ### JetBrains ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
@@ -232,3 +235,4 @@ yarn-error.log
 # https://plugins.jetbrains.com/plugin/12206-codestream
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,vue,vuejs,jetbrains,webstorm
+/nessie.config.ts
