@@ -1,5 +1,6 @@
 import { Application } from "https://deno.land/x/oak/mod.ts";
-
+import router from "./routes.ts";
+const PORT = 8000;
 const app = new Application();
 
 // Logger
@@ -17,10 +18,13 @@ app.use(async (ctx, next) => {
     ctx.response.headers.set("X-Response-Time", `${ms}ms`);
 });
 
+//Routers
+app.use(router.routes());
+app.use(router.allowedMethods());
 // Hello World!
 app.use((ctx) => {
     ctx.response.body = "Hello World!";
 });
-console.log("Hot Diggity!");
+console.log(`Listening on port: ${PORT}`);
 
-await app.listen({ port: 8000 });
+await app.listen({ port: PORT });
