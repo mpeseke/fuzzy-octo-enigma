@@ -140,14 +140,14 @@ const updateQuote = async ({
 }) => {
     try {
         const body = await request.body();
-        const {title, complete} = await body.value;
-        const URI = `${BASE_URI}/updatedOne`;
+        const { quoteBody, quoteAuthor } = await body.value;
+        const URI = `${BASE_URI}/updateOne`;
         const query = {
             collection: COLLECTION,
             database: DATABASE,
             dataSource: DATA_SOURCE,
             filter: {quoteId: parseInt(params.id)},
-            update: { $set: {title, complete} }
+            update: { $set: { quoteBody, quoteAuthor } }
         };
         options.body = JSON.stringify(query);
         const dataResponse = await fetch(URI, options);
