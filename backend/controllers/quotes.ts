@@ -129,4 +129,74 @@ const getQuote = async ({
     }
 };
 
-export { addQuote, getAllQuotes, getQuote };
+const updateQuote = async ({
+    params,
+    request,
+    response
+}: {
+    params: {id: string};
+    request: any;
+    response: any;
+}) => {
+    try {
+        const body = await request.body();
+        const {title, complete} = await body.value;
+        const URI = `${BASE_URI}/updatedOne`;
+        const query = {
+            collection: COLLECTION,
+            database: DATABASE,
+            dataSource: DATA_SOURCE,
+            filter: {quoteId: parseInt(params.id)},
+            update: { $set: {title, complete} }
+        };
+        options.body = JSON.stringify(query);
+        const dataResponse = await fetch(URI, options);
+        const quoteUpdated = await dataResponse.json();
+
+        response.status = 200;
+        response.body = {
+            success: true,
+            quoteUpdated
+        };
+
+    } catch (err)  {
+        response.body = {
+            success: false,
+            msg: err.toString()
+        };
+    }
+};
+
+const deleteQuote = async ({
+    params,
+    response
+}: {
+    params: { id: string };
+    response: any;
+}) => {
+    try {
+        const URI = `${BASE_URI}/deleteOne`;
+        const query = {
+            collection: COLLECTION,
+            database: DATABASE,
+            dataSource: DATA_SOURCE,
+            filter: { quoteId: parseInt(params.id) }
+        };
+        options.body = JSON.stringify(query);
+        const dataResponse = await fetch(URI, options);
+        const quoteDeleted = await dataResponse.json();
+
+        response.status = 201;
+        response.body = {
+            quoteDeleted
+        };
+    } catch (err) {
+        response.body = {
+            success: false,
+            msg: err.toString()
+        };
+    }
+};
+
+
+export { addQuote, getAllQuotes, getQuote, updateQuote, deleteQuote };
