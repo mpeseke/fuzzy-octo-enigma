@@ -9,7 +9,6 @@ import { addQuote,
 const router = new Router();
 
 router
-
     .post("/api/quote", addQuote)
     .get("/api/quote", getAllQuotes)
     .get("/api/quote/:id", getQuote)

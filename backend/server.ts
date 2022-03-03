@@ -8,6 +8,7 @@ const app = new Application();
 app.use(router.routes());
 app.use(router.allowedMethods());
 
+console.log("Server started successfully...");
 console.log(`Listening on port: ${PORT}`);
 
 await app.listen({ port: PORT });

@@ -1,6 +1,5 @@
 import { config } from "https://deno.land/x/dotenv/mod.ts";
 const { DATA_API_KEY, APP_ID } = config();
-import { Quote } from "../interfaces/Quote.ts";
 
 const BASE_URI = `https://data.mongodb-api.com/app/${APP_ID}/endpoint/data/beta/action`;
 const DATA_SOURCE = "Cluster0";
@@ -108,7 +107,7 @@ const getQuote = async ({
         collection: COLLECTION,
         database: DATABASE,
         dataSource: DATA_SOURCE,
-        filter: {quoteId: parseInt(params.id)}
+        filter: {_id : { $oid : params.id} }
     };
     options.body = JSON.stringify(query);
     const dataResponse = await fetch(URI, options);
@@ -146,7 +145,7 @@ const updateQuote = async ({
             collection: COLLECTION,
             database: DATABASE,
             dataSource: DATA_SOURCE,
-            filter: {quoteId: parseInt(params.id)},
+            filter: {_id : { $oid : params.id} },
             update: { $set: { quoteBody, quoteAuthor } }
         };
         options.body = JSON.stringify(query);
@@ -180,7 +179,7 @@ const deleteQuote = async ({
             collection: COLLECTION,
             database: DATABASE,
             dataSource: DATA_SOURCE,
-            filter: { quoteId: parseInt(params.id) }
+            filter: {_id : { $oid : params.id} }
         };
         options.body = JSON.stringify(query);
         const dataResponse = await fetch(URI, options);
