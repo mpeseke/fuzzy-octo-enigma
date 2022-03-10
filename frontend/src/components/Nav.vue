@@ -20,6 +20,9 @@
            <li class="nav-item">
             <router-link active-class="active" class="nav-link" to="/create-user">Create User</router-link>
           </li>
+           <li class="nav-item">
+            <router-link active-class="active" class="nav-link" to="/dex">Dex</router-link>
+          </li>
         </ul>
         <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

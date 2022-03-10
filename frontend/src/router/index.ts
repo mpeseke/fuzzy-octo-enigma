@@ -3,6 +3,7 @@ import Home from "../views/Home.vue";
 import CreateQuote from "../views/CreateQuote.vue";
 import Quotes from "../views/Quotes.vue";
 import CreateUser from "../views/CreateUser.vue";
+import Dex from "../views/Dex.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -24,7 +25,12 @@ const routes: Array<RouteRecordRaw> = [
     path: "/create-user",
     name: "CreateUser",
     component: CreateUser
-  }
+  },
+  {
+    path: "/dex",
+    name: "Dex",
+    component: Dex,
+  },
 ];
 
 const router = createRouter({
